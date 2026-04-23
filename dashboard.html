@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
+        }
+
+        .navbar {
+            background-color: #00695c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 50px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0px 6px 18px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: gray;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        Smart Boutique System Dashboard
+    </div>
+
+    <div class="container">
+
+        <div class="card" onclick="goToAdd()">➕ Add Product</div>
+        <div class="card" onclick="goToView()">📦 View Inventory</div>
+        <div class="card" onclick="goToSell()">💰 Sell Product</div>
+        <div class="card" onclick="goToReports()">📊 Reports</div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Smart Boutique System
+    </div>
+
+    <script>
+        function goToAdd() {
+            window.location.href = "add_product.html";
+        }
+
+        function goToView() {
+            window.location.href = "view_products.html";
+        }
+
+        function goToSell() {
+            window.location.href = "sell_product.html";
+        }
+
+        function goToReports() {
+            window.location.href="reports.html";
+        }
+    </script>
+
+</body>
+</html>

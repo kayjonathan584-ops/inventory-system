@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sell Product</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: teal;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .container {
+            width: 350px;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: crimson;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkred;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: teal;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        Smart Boutique Inventory System
+    </div>
+
+    <div class="container">
+
+        <h2>💰 Sell Product</h2>
+
+        <input type="text" id="name" placeholder="Product Name">
+        <input type="number" id="quantity" placeholder="Quantity to Sell">
+
+        <button onclick="sellProduct()">Process Sale</button>
+
+        <a class="back" href="dashboard.html">← Back to Dashboard</a>
+
+    </div>
+
+    <script>
+        function sellProduct() {
+            let name = document.getElementById("name").value;
+            let qty = parseInt(document.getElementById("quantity").value);
+
+            if (name === "" || isNaN(qty)) {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            let products = JSON.parse(localStorage.getItem("products")) || [];
+            let found = false;
+
+            products.forEach(product => {
+                if (product.name.toLowerCase() === name.toLowerCase()) {
+                    if (product.quantity >= qty) {
+                        product.quantity -= qty;
+                        found = true;
+                        alert("Sale successful!");
+                    } else {
+                        alert("Not enough stock!");
+                        found = true;
+                    }
+                }
+            });
+
+            if (!found) {
+                alert("Product not found!");
+            }
+
+            localStorage.setItem("products", JSON.stringify(products));
+
+            document.getElementById("name").value = "";
+            document.getElementById("quantity").value = "";
+        }
+    </script>
+
+</body>
+</html>

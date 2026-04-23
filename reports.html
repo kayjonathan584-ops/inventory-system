@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reports</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #00695c;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .card {
+            background: white;
+            width: 300px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 18px rgba(0,0,0,0.1);
+        }
+
+        .value {
+            font-size: 32px;
+            color: #00695c;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: teal;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        System Reports
+    </div>
+
+    <div class="card">
+        <p>Total Products</p>
+        <div class="value" id="totalProducts">0</div>
+    </div>
+
+    <div class="card">
+        <p>Total Stock Quantity</p>
+        <div class="value" id="totalStock">0</div>
+    </div>
+
+    <a href="dashboard.html">⬅ Back to Dashboard</a>
+
+    <script>
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+
+        let totalProducts = products.length;
+
+        let totalStock = products.reduce((sum, p) => {
+            return sum + parseInt(p.quantity);
+        }, 0);
+
+        document.getElementById("totalProducts").innerText = totalProducts;
+        document.getElementById("totalStock").innerText = totalStock;
+    </script>
+
+</body>
+</html>
